@@ -1,0 +1,357 @@
+{
+  "catalogue_version": "2.0",
+  "reviewed_on": "2026-11-03",
+  "policy": "Curated existing-term catalogue with Schema.org. No local term definitions. Kinds specify supported application usage; generic RDF source properties may be projected to OWL object/datatype declarations for this profile. This is not automatic full-vocabulary retrieval.",
+  "prefixes": {
+    "dcterms": "http://purl.org/dc/terms/",
+    "cito": "http://purl.org/spar/cito/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "schema": "https://schema.org/"
+  },
+  "terms": [
+    {
+      "curie": "dcterms:Agent",
+      "iri": "http://purl.org/dc/terms/Agent",
+      "label": "Agent",
+      "definition": "An entity capable of acting.",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
+      "source_version": "2020-01-20",
+      "kind": "class",
+      "value_kind": null,
+      "declaration": "owl:Class",
+      "usage_note": "Not specifically an author or a person; select more specific approved terms when justified."
+    },
+    {
+      "curie": "dcterms:BibliographicResource",
+      "iri": "http://purl.org/dc/terms/BibliographicResource",
+      "label": "Bibliographic Resource",
+      "definition": "A documentary resource such as a book or article.",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
+      "source_version": "2020-01-20",
+      "kind": "class",
+      "value_kind": null,
+      "declaration": "owl:Class",
+      "usage_note": "Broader than journal article. Use an approved specific article class when needed."
+    },
+    {
+      "curie": "dcterms:identifier",
+      "iri": "http://purl.org/dc/terms/identifier",
+      "label": "Identifier",
+      "definition": "An unambiguous reference within a context.",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
+      "source_version": "2020-01-20",
+      "kind": "property",
+      "value_kind": "literal",
+      "declaration": "owl:DatatypeProperty",
+      "usage_note": "Use literal identifier values in this application profile. Does not guarantee a PID scheme or uniqueness."
+    },
+    {
+      "curie": "dcterms:creator",
+      "iri": "http://purl.org/dc/terms/creator",
+      "label": "Creator",
+      "definition": "An entity responsible for creating a resource.",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
+      "source_version": "2020-01-20",
+      "kind": "property",
+      "value_kind": "resource",
+      "declaration": "owl:ObjectProperty",
+      "usage_note": "This profile uses creator entities, not name strings. Broader than authorship; schema:author is more specific for authorship."
+    },
+    {
+      "curie": "dcterms:title",
+      "iri": "http://purl.org/dc/terms/title",
+      "label": "Title",
+      "definition": "A name for a resource.",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
+      "source_version": "2020-01-20",
+      "kind": "property",
+      "value_kind": "literal",
+      "declaration": "owl:DatatypeProperty",
+      "usage_note": ""
+    },
+    {
+      "curie": "dcterms:description",
+      "iri": "http://purl.org/dc/terms/description",
+      "label": "Description",
+      "definition": "An account of a resource.",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
+      "source_version": "2020-01-20",
+      "kind": "property",
+      "value_kind": "literal",
+      "declaration": "owl:DatatypeProperty",
+      "usage_note": ""
+    },
+    {
+      "curie": "dcterms:subject",
+      "iri": "http://purl.org/dc/terms/subject",
+      "label": "Subject",
+      "definition": "The topic of a resource.",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
+      "source_version": "2020-01-20",
+      "kind": "property",
+      "value_kind": "resource",
+      "declaration": "owl:ObjectProperty",
+      "usage_note": "This profile uses topic concepts, not keyword strings."
+    },
+    {
+      "curie": "cito:cites",
+      "iri": "http://purl.org/spar/cito/cites",
+      "label": "cites",
+      "definition": "Connects a citing entity to the cited entity.",
+      "source": "https://sparontologies.github.io/cito/current/cito.html",
+      "source_version": "documentation reviewed 2026-10-20",
+      "inverse": "cito:isCitedBy",
+      "kind": "property",
+      "value_kind": "resource",
+      "declaration": "owl:ObjectProperty",
+      "usage_note": "Directed; not symmetric or transitive."
+    },
+    {
+      "curie": "cito:isCitedBy",
+      "iri": "http://purl.org/spar/cito/isCitedBy",
+      "label": "is cited by",
+      "definition": "Connects a cited entity to the entity citing it.",
+      "source": "https://sparontologies.github.io/cito/current/cito.html",
+      "source_version": "documentation reviewed 2026-10-20",
+      "inverse": "cito:cites",
+      "kind": "property",
+      "value_kind": "resource",
+      "declaration": "owl:ObjectProperty",
+      "usage_note": "Published inverse of cito:cites. Query cito:cites backwards if you do not materialize inverse facts."
+    },
+    {
+      "curie": "dcat:Resource",
+      "iri": "http://www.w3.org/ns/dcat#Resource",
+      "label": "Cataloged Resource",
+      "definition": "A resource represented in a catalogue.",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "source_version": "DCAT 3 Recommendation",
+      "kind": "class",
+      "value_kind": null,
+      "declaration": "owl:Class",
+      "usage_note": ""
+    },
+    {
+      "curie": "dcat:Dataset",
+      "iri": "http://www.w3.org/ns/dcat#Dataset",
+      "label": "Dataset",
+      "definition": "A collection of data available for access or download.",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "source_version": "DCAT 3 Recommendation",
+      "parents": [
+        "dcat:Resource"
+      ],
+      "kind": "class",
+      "value_kind": null,
+      "declaration": "owl:Class",
+      "usage_note": "Description in a source graph does not by itself prove current access or download availability."
+    },
+    {
+      "curie": "dcat:Catalog",
+      "iri": "http://www.w3.org/ns/dcat#Catalog",
+      "label": "Catalog",
+      "definition": "A curated collection of resource metadata.",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "source_version": "DCAT 3 Recommendation",
+      "parents": [
+        "dcat:Dataset"
+      ],
+      "kind": "class",
+      "value_kind": null,
+      "declaration": "owl:Class",
+      "usage_note": "An RDF graph is not automatically a catalogue. Do not subclass SourceGraph under Catalog just to pass validation."
+    },
+    {
+      "curie": "dcat:dataset",
+      "iri": "http://www.w3.org/ns/dcat#dataset",
+      "label": "dataset",
+      "definition": "Links a catalogue to a dataset listed in it.",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "source_version": "DCAT 3 Recommendation",
+      "domain": "dcat:Catalog",
+      "range": "dcat:Dataset",
+      "kind": "property",
+      "value_kind": "resource",
+      "declaration": "owl:ObjectProperty",
+      "usage_note": "Use only for genuine catalogue membership; do not use it to describe arbitrary RDF graph containment."
+    },
+    {
+      "curie": "dcat:keyword",
+      "iri": "http://www.w3.org/ns/dcat#keyword",
+      "label": "keyword",
+      "definition": "A keyword or tag describing a resource.",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "source_version": "DCAT 3 Recommendation",
+      "kind": "property",
+      "value_kind": "literal",
+      "declaration": "owl:DatatypeProperty",
+      "usage_note": "Literal values; DCAT 3 does not impose the old DCAT 1 Dataset domain."
+    },
+    {
+      "curie": "dcat:theme",
+      "iri": "http://www.w3.org/ns/dcat#theme",
+      "label": "theme",
+      "definition": "A category used to classify a resource.",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "source_version": "DCAT 3 Recommendation",
+      "kind": "property",
+      "value_kind": "resource",
+      "declaration": "owl:ObjectProperty",
+      "usage_note": "A controlled subject concept; dcterms:subject is a broader alternative."
+    },
+    {
+      "curie": "skos:Concept",
+      "iri": "http://www.w3.org/2004/02/skos/core#Concept",
+      "label": "Concept",
+      "definition": "A unit of thought used in a knowledge organization system.",
+      "source": "https://www.w3.org/TR/skos-reference/",
+      "source_version": "2009-08-18",
+      "kind": "class",
+      "value_kind": null,
+      "declaration": "owl:Class",
+      "usage_note": ""
+    },
+    {
+      "curie": "schema:Thing",
+      "iri": "https://schema.org/Thing",
+      "kind": "class",
+      "label": "Thing",
+      "definition": "The most general kind of thing.",
+      "source": "https://schema.org/Thing",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "",
+      "declaration": "owl:Class",
+      "value_kind": null
+    },
+    {
+      "curie": "schema:CreativeWork",
+      "iri": "https://schema.org/CreativeWork",
+      "kind": "class",
+      "label": "Creative work",
+      "definition": "A creative work, including books, articles, software and other works.",
+      "source": "https://schema.org/CreativeWork",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "Broader than publication. Scope scholarly/documentary results in queries.",
+      "declaration": "owl:Class",
+      "value_kind": null,
+      "parents": [
+        "schema:Thing"
+      ]
+    },
+    {
+      "curie": "schema:Article",
+      "iri": "https://schema.org/Article",
+      "kind": "class",
+      "label": "Article",
+      "definition": "An article, including news, magazine and other article types.",
+      "source": "https://schema.org/Article",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "",
+      "declaration": "owl:Class",
+      "value_kind": null,
+      "parents": [
+        "schema:CreativeWork"
+      ]
+    },
+    {
+      "curie": "schema:ScholarlyArticle",
+      "iri": "https://schema.org/ScholarlyArticle",
+      "kind": "class",
+      "label": "Scholarly article",
+      "definition": "A scholarly article.",
+      "source": "https://schema.org/ScholarlyArticle",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "Prefer for scholarly article results in CQ_001.",
+      "declaration": "owl:Class",
+      "value_kind": null,
+      "parents": [
+        "schema:Article"
+      ]
+    },
+    {
+      "curie": "schema:Book",
+      "iri": "https://schema.org/Book",
+      "kind": "class",
+      "label": "Book",
+      "definition": "A book.",
+      "source": "https://schema.org/Book",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "",
+      "declaration": "owl:Class",
+      "value_kind": null,
+      "parents": [
+        "schema:CreativeWork"
+      ]
+    },
+    {
+      "curie": "schema:Report",
+      "iri": "https://schema.org/Report",
+      "kind": "class",
+      "label": "Report",
+      "definition": "A report produced by a governmental or non-governmental organisation.",
+      "source": "https://schema.org/Report",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "",
+      "declaration": "owl:Class",
+      "value_kind": null,
+      "parents": [
+        "schema:Article"
+      ]
+    },
+    {
+      "curie": "schema:Person",
+      "iri": "https://schema.org/Person",
+      "kind": "class",
+      "label": "Person",
+      "definition": "A person.",
+      "source": "https://schema.org/Person",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "A person may act as an author; do not create a separate local Author class.",
+      "declaration": "owl:Class",
+      "value_kind": null,
+      "parents": [
+        "schema:Thing"
+      ]
+    },
+    {
+      "curie": "schema:Organization",
+      "iri": "https://schema.org/Organization",
+      "kind": "class",
+      "label": "Organization",
+      "definition": "An organisation.",
+      "source": "https://schema.org/Organization",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "An organisation may be an author.",
+      "declaration": "owl:Class",
+      "value_kind": null,
+      "parents": [
+        "schema:Thing"
+      ]
+    },
+    {
+      "curie": "schema:author",
+      "iri": "https://schema.org/author",
+      "kind": "property",
+      "label": "author",
+      "definition": "The author of a creative work or rating.",
+      "source": "https://schema.org/author",
+      "source_version": "documentation reviewed 2026-11-03",
+      "usage_note": "Expected values include schema:Person and schema:Organization. These are alternatives, not an intersection. Schema.org expected types are not global OWL domain/range restrictions.",
+      "declaration": "owl:ObjectProperty",
+      "value_kind": "resource"
+    },
+    {
+      "curie": "skos:prefLabel",
+      "iri": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "kind": "property",
+      "value_kind": "literal",
+      "label": "preferred label",
+      "definition": "A preferred lexical label.",
+      "usage_note": "May be language-tagged. Use langString or string in the profile as needed.",
+      "source": "https://www.w3.org/TR/skos-reference/",
+      "source_version": "2009-08-18",
+      "declaration": "owl:AnnotationProperty"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CQ_001",
+    "question": "Given a publication PID, find all articles that cite it plus those cited in the publication itself.",
+    "expected_answer": "PIDs of articles in either citation direction; decide whether direction must be returned.",
+    "notes": "The publication PID scheme must be identifiable. Do not assume citation is symmetric or transitive.",
+    "use_case_ids": [
+      "UC_01"
+    ]
+  },
+  {
+    "id": "CQ_002",
+    "question": "Given an author, return all documents where one of his/her work is cited.",
+    "expected_answer": "PIDs of documents citing at least one work authored by the given person.",
+    "notes": "Pilot assumption: identify the author with a PID; name disambiguation is outside this pilot.",
+    "use_case_ids": [
+      "UC_02"
+    ]
+  },
+  {
+    "id": "CQ_003a",
+    "question": "Give me the references of all the available datasets that I can find in this federation of graphs.",
+    "expected_answer": "Dataset identifiers.",
+    "notes": "Pilot interpretation: references means identifiers; available means described in a participating graph, not necessarily downloadable.",
+    "use_case_ids": [
+      "UC_03"
+    ]
+  },
+  {
+    "id": "CQ_003b",
+    "question": "Give me the list of identifiers of all the available datasets that I can find in this federation of graphs related to topic X and keywords Y.",
+    "expected_answer": "Dataset identifiers matching the requested topic and keywords.",
+    "notes": "Retain the distinction between topic concepts and keyword literals for this pilot. All/any keyword matching and label matching rules require review; do not invent OWL restrictions for them.",
+    "use_case_ids": [
+      "UC_03"
+    ]
+  }
+]

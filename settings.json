@@ -1,0 +1,30 @@
+{
+  "generation": {
+    "provider": "ollama",
+    "model": "qwen3:4b",
+    "mode": "joint",
+    "response_format": "elements",
+    "ollama_base_url": "http://localhost:11434",
+    "openai_base_url": "https://api.openai.com/v1",
+    "timeout_seconds": 600,
+    "http_attempts": 3,
+    "max_output_tokens": 8192,
+    "temperature": null,
+    "ollama_num_ctx": 16384,
+    "ollama_seed": 42,
+    "ollama_think": false,
+    "max_syntax_repairs": 1
+  },
+  "files": {
+    "cqs": "inputs/cqs.json",
+    "orsd": "inputs/orsd.json",
+    "prompt": "prompts/ontology_instructions.md",
+    "catalogue": "vocabularies/catalogue.json"
+  },
+  "cq_ids": null,
+  "output": {
+    "file": "outputs/ontology.owl",
+    "ontology_iri": "https://example.org/ontology/scholarly-discovery",
+    "overwrite": true
+  }
+}

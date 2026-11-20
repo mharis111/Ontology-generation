@@ -1,0 +1,208 @@
+{
+  "metadata": {
+    "id": "SCHOLARLY_DISCOVERY_ORSD",
+    "title": "Scholarly discovery ontology profile",
+    "version": "0.3",
+    "status": "Pilot draft for review; existing vocabulary terms only"
+  },
+  "purpose": "Specify the information needed to discover scholarly resources across a federation of knowledge graphs.",
+  "scope": {
+    "included": [
+      "Publications and articles",
+      "Authors and authorship",
+      "Directed citations",
+      "Datasets and their identifiers",
+      "Topics and keywords when required by a selected CQ",
+      "Dataset membership in a federated metadata discovery catalogue"
+    ],
+    "excluded": [
+      "Endpoint routing and federated query execution",
+      "Ranking algorithms",
+      "Automatic identity resolution",
+      "Guarantees that a described dataset is downloadable"
+    ]
+  },
+  "intended_users": [
+    "Researchers discovering scholarly resources",
+    "Knowledge graph curators",
+    "Federated gateway developers"
+  ],
+  "use_cases": [
+    {
+      "id": "UC_01",
+      "title": "Citation discovery",
+      "description": "A researcher supplies a publication PID and retrieves article identifiers in either citation direction."
+    },
+    {
+      "id": "UC_02",
+      "title": "Author citation discovery",
+      "description": "A researcher identifies an author and retrieves identifiers of documents citing that author's works."
+    },
+    {
+      "id": "UC_03",
+      "title": "Dataset discovery",
+      "description": "A researcher discovers datasets described in participating graphs, optionally filtered by topic and keywords."
+    }
+  ],
+  "data_exchange_specification": [
+    {
+      "id": "DE_01",
+      "description": "Identifier-based discovery requests and results. Fields describe exchanged information, not automatically ontology classes or properties.",
+      "sources": [
+        "Participating scholarly knowledge graphs"
+      ],
+      "fields": [
+        {
+          "name": "publication_pid",
+          "value_type": "string",
+          "description": "Input publication PID; its identifier scheme must be known."
+        },
+        {
+          "name": "author_pid",
+          "value_type": "string",
+          "description": "Pilot author identifier; name disambiguation is not implemented."
+        },
+        {
+          "name": "result_pid",
+          "value_type": "string",
+          "description": "Identifier of a returned article, document or dataset."
+        },
+        {
+          "name": "source_graph",
+          "value_type": "IRI",
+          "description": "An identifier for a participating source used by the application. The discovery catalogue aggregates dataset metadata from these sources; this input field does not require a new ontology class."
+        }
+      ]
+    }
+  ],
+  "functional_requirements": [
+    {
+      "id": "FR_01",
+      "type": "statement",
+      "text": "Represent directed citations between scholarly works. Incoming citations can be queried using the same relation in reverse.",
+      "applies_to": [
+        "CQ_001",
+        "CQ_002"
+      ]
+    },
+    {
+      "id": "FR_02",
+      "type": "statement",
+      "text": "Represent authors as identifiable people or organisations and connect authored creative works to them using schema:author. Authorship is a relationship, not a newly minted Author class.",
+      "applies_to": [
+        "CQ_002"
+      ]
+    },
+    {
+      "id": "FR_03",
+      "type": "statement",
+      "text": "Represent identifiers for resource kinds required by the selected CQs, including the identifiers required in the expected answers.",
+      "applies_to": []
+    },
+    {
+      "id": "FR_04",
+      "type": "table",
+      "text": "Required dataset discovery information for the filtered discovery CQ.",
+      "applies_to": [
+        "CQ_003b"
+      ],
+      "columns": [
+        "information",
+        "meaning",
+        "representation"
+      ],
+      "rows": [
+        {
+          "information": "topic",
+          "meaning": "Subject concept associated with the dataset",
+          "representation": "Entity with a label"
+        },
+        {
+          "information": "keyword",
+          "meaning": "Keyword associated with the dataset",
+          "representation": "Literal string"
+        }
+      ]
+    },
+    {
+      "id": "FR_05",
+      "type": "statement",
+      "text": "Represent dataset discovery as dataset listings in a federated discovery catalogue using existing DCAT terms. This is a catalogue of metadata collected from participating graphs; do not assert that every RDF graph is a dcat:Catalog. Actual graph routing remains outside this ontology profile.",
+      "applies_to": [
+        "CQ_003a",
+        "CQ_003b"
+      ]
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR_01",
+      "text": "Deliver one ontology file with existing vocabulary terms, labels and definitions. The default serialization is RDF/XML (.owl); Turtle is optional. Human review is required before adoption.",
+      "applies_to": []
+    }
+  ],
+  "terminology": [
+    {
+      "term": "PID",
+      "definition": "Persistent identifier. The pilot uses string values; identifier schemes and normalization require agreement."
+    },
+    {
+      "term": "available dataset",
+      "definition": "A dataset described in a participating graph; this does not assert that its files can be downloaded."
+    },
+    {
+      "term": "article",
+      "definition": "A kind of publication; distinguish articles from other works when selecting the results of CQ_001."
+    }
+  ],
+  "modelling_decisions": [
+    {
+      "id": "MD_01",
+      "text": "Pilot simplification: identifier values may be literal properties. Do not infer OWL keys, functional properties or cardinality from the word unique.",
+      "applies_to": []
+    },
+    {
+      "id": "MD_02",
+      "text": "Citations are directed. Prefer cito:cites queried in either direction; preserve published inverse relations when provided by the catalogue. Do not assert citation symmetry or transitivity.",
+      "applies_to": [
+        "CQ_001",
+        "CQ_002"
+      ]
+    },
+    {
+      "id": "MD_03",
+      "text": "Keep topics as concepts and keywords as literals for this pilot.",
+      "applies_to": [
+        "CQ_003b"
+      ]
+    },
+    {
+      "id": "MD_04",
+      "text": "Use the existing schema:ScholarlyArticle -> schema:Article -> schema:CreativeWork hierarchy. CreativeWork is broader than publication; scholarly/documentary result types must be selected in queries. Dataset discovery uses a metadata catalogue, not a local SourceGraph class.",
+      "applies_to": []
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "OQ_01",
+      "text": "Which PID schemes and normalization rules will be accepted?",
+      "applies_to": []
+    },
+    {
+      "id": "OQ_02",
+      "text": "Must CQ_001 return citation direction alongside article identifiers?",
+      "applies_to": [
+        "CQ_001"
+      ]
+    },
+    {
+      "id": "OQ_03",
+      "text": "Does keyword filtering require all keywords or any keyword, and how are topic labels matched?",
+      "applies_to": [
+        "CQ_003b"
+      ]
+    }
+  ],
+  "reuse_context": "Use approved existing vocabulary IRIs only. Prefer schema:ScholarlyArticle for scholarly articles, schema:author for authorship, CiTO for citations, DCAT for dataset discovery and SKOS for topics. Do not mint local classes or properties.",
+  "additional_context": "Editable pilot requirements. Existing terms and the catalogue-based discovery view require domain review. Graph endpoints, federation execution, identifier normalization and data mappings are application responsibilities."
+}
